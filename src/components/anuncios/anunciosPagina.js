@@ -1,29 +1,38 @@
-const articulos = [
-  {
-    nombre: 'bicicleta',
-    operacion: 'venta',
-    precio: '450',
-    descripcion:
-      'Vendo bicicleta nueva, solo se le ha dado un uso. La vendo por no usarla ',
-    foto: 'bici.jpg',
-    userId: 1,
-    createdAt: '2021-02-01T19:25:36.038Z',
-    id: 1,
-  },
-  {
-    userId: 1,
-    nombre: 'moto',
-    operacion: 'compra',
-    precio: '450',
-    descripcion: ' Compro motro Marca Rata, usada de no me importa el estado',
-    foto: 'moto.jpg',
-    createdAt: '2021-02-01T19:25:36.038Z',
-    id: 2,
-  },
-];
+import { obtenerUltimosAnuncios } from '../../api/anuncios';
+import React from 'react';
+
+// const anuncios = [
+//   {
+//     nombre: 'bicicleta',
+//     operacion: 'venta',
+//     precio: '450',
+//     descripcion:
+//       'Vendo bicicleta nueva, solo se le ha dado un uso. La vendo por no usarla ',
+//     foto: 'bici.jpg',
+//     userId: 1,
+//     createdAt: '2021-02-01T19:25:36.038Z',
+//     id: 1,
+//   },
+//   {
+//     userId: 1,
+//     nombre: 'moto',
+//     operacion: 'compra',
+//     precio: '450',
+//     descripcion: ' Compro motro Marca Rata, usada de no me importa el estado',
+//     foto: 'moto.jpg',
+//     createdAt: '2021-02-01T19:25:36.038Z',
+//     id: 2,
+//   },
+// ];
 
 const PaginaAnuncios = () => {
-  const item = articulos.map((anuncio) => (
+  /**se levanta un estado y luego renderizamos */
+  const [anuncios, setAnuncios] = React.useState([]);
+  /**usamos el useEfecct para hacer las logicas que no tiene tiene nada que ver con el render y controlamos las llamadas de los anuncios*/
+  React.useEffect(() => {
+    obtenerUltimosAnuncios().then(setAnuncios);
+  }, []);
+  const item = anuncios.map((anuncio) => (
     <li key={anuncio.id}>
       {anuncio.nombre} <br></br>
       <span>{anuncio.precio}</span> <br></br>

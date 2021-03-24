@@ -32,8 +32,13 @@ const PaginaAnuncios = () => {
   React.useEffect(() => {
     obtenerUltimosAnuncios().then(setAnuncios);
   }, []);
+
+  const handleClick = () => {
+    alert('Construyendo un enlace al detalle...');
+  };
+
   const item = anuncios.map((anuncio) => (
-    <li key={anuncio.id}>
+    <li onClick={handleClick} key={anuncio.id}>
       {anuncio.nombre} <br></br>
       <span>{anuncio.precio}</span> <br></br>
       <span>{anuncio.operacion}</span>

@@ -1,5 +1,6 @@
 import { obtenerUltimosAnuncios } from '../../api/anuncios';
 import React from 'react';
+import Layout from '../layout/layout';
 
 // const anuncios = [
 //   {
@@ -25,7 +26,7 @@ import React from 'react';
 //   },
 // ];
 
-const PaginaAnuncios = () => {
+const PaginaAnuncios = ({ className, ...props }) => {
   /**se levanta un estado y luego renderizamos */
   const [anuncios, setAnuncios] = React.useState([]);
   /**usamos el useEfecct para hacer las logicas que no tiene tiene nada que ver con el render y controlamos las llamadas de los anuncios*/
@@ -46,9 +47,11 @@ const PaginaAnuncios = () => {
     </li>
   ));
   return (
-    <div className="paginaAnuncios">
-      <ul>{item}</ul>
-    </div>
+    <Layout title="Listados de Anuncios">
+      <div className="paginaAnuncios">
+        <ul>{item}</ul>
+      </div>
+    </Layout>
   );
 };
 

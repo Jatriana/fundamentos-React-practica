@@ -1,5 +1,9 @@
 import './App.css';
-import PaginaAnuncios from './components/anuncios/anunciosPagina';
+import {
+  PaginaAnuncios,
+  PaginaDetalleAnuncio,
+  PaginaNuevoAnuncio,
+} from './components/anuncios/';
 
 function App() {
   return (

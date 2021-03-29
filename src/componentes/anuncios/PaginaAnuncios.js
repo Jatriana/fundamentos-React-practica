@@ -34,12 +34,12 @@ const PaginaAnuncios = ({ className, ...props }) => {
     obtenerUltimosAnuncios().then(setAnuncios);
   }, []);
 
-  const handleClick = () => {
+  const manejarClick = () => {
     alert('Construyendo un enlace al detalle...');
   };
 
   const item = anuncios.map((anuncio) => (
-    <li onClick={handleClick} key={anuncio.id}>
+    <li onClick={manejarClick} key={anuncio.id}>
       {anuncio.nombre} <br></br>
       <span>{anuncio.precio}</span> <br></br>
       <span>{anuncio.operacion}</span>

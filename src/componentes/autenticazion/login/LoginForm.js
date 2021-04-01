@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import Button from '../../compartidos/button';
 import CamposForm from '../../compartidos/CamposForm';
 
@@ -8,26 +7,26 @@ import './LoginForm.css';
 /**implemento hooks para las input */
 function LoginForm({ onSubmit }) {
   const [credenciales, setCredenciales] = React.useState({
-    username: '',
+    email: '',
     password: '',
   });
 
-  const handleUsernameChange = (event) => {
-    const newcredenciales = { ...credenciales, username: event.target.value };
-    setCredenciales(newcredenciales);
+  const handleChange = (event) => {
+    setCredenciales((oldCredenciales) => {
+      const newCredenciales = {
+        ...oldCredenciales,
+        [event.target.name]: event.target.value,
+      };
+      return newCredenciales;
+    });
   };
-
-  const handlePasswordChange = (event) => {
-    const newcredenciales = { ...credenciales, password: event.target.value };
-    setCredenciales(newcredenciales);
-  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmit(credenciales);
-    
-  }
-  const {username, password}= credenciales
+  };
+
+  const { email, password } = credenciales;
   /**componente de checkbox de recordar contraseña */
   const Checkbox = ({ fnChange, title = '', checked = false }) => (
     <label>
@@ -55,11 +54,11 @@ function LoginForm({ onSubmit }) {
     <form className="paginalogin" onSubmit={handleSubmit}>
       <CamposForm
         type="text"
-        name="username"
+        name="email"
         label="email o usuario"
         className="loginForm-campo"
-        value={username}
-        onChange={handleUsernameChange}
+        value={email}
+        onChange={handleChange}
       ></CamposForm>
       <CamposForm
         type="password"
@@ -67,7 +66,7 @@ function LoginForm({ onSubmit }) {
         label="contraseña"
         className="loginForm-campo"
         value={password}
-        onChange={handlePasswordChange}
+        onChange={handleChange}
       ></CamposForm>
       <Checkbox title="recuerdame" fnChange={click} checked={state.change} />
 
@@ -75,7 +74,7 @@ function LoginForm({ onSubmit }) {
         type="submit"
         className="loginForm-submit"
         variant="primary"
-        disabled={!username || !password}
+        disabled={!email || !password}
       >
         Acceder
       </Button>

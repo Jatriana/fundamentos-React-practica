@@ -1,5 +1,5 @@
-import cliente from './cliente'
+import cliente from './cliente';
 
-export const login = credenciales =>{
-    return cliente.post('auth/signup',credenciales)
-}
+export const login = (credenciales) => {
+  return cliente.post('Api/auth/login', credenciales);
+};

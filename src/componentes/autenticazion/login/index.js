@@ -1,1 +1,1 @@
-export { default as PaginaLogin} from './LoginForm'
+export { default as PaginaLogin } from './PaginaLogin';

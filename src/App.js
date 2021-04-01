@@ -1,4 +1,5 @@
-import './App.css';
+
+import {PaginaLogin} from './componentes/autenticazion/login/index'
 import {
   PaginaAnuncios,
   PaginaDetalleAnuncio,
@@ -8,9 +9,12 @@ import {
 function App() {
   return (
     <div className="App">
-      <PaginaAnuncios></PaginaAnuncios>
+      <PaginaLogin></PaginaLogin>
+      {
+      /*<PaginaAnuncios></PaginaAnuncios>
       <PaginaDetalleAnuncio></PaginaDetalleAnuncio>
       <PaginaNuevoAnuncio></PaginaNuevoAnuncio>
+      */}
 
     </div>
   );

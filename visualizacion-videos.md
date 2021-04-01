@@ -14,3 +14,4 @@ en pagina anuncio se envuelve( main, section , article, cuerpo de la pagina, foo
 , se creo la carpeta de shared donde de va esta los componentes que van ha ser comunes.
 
 video 3.36
+dia 3 min1.42

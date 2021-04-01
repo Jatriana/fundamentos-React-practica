@@ -1,18 +1,22 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import './CamposForm.css'
+
 function CamposForm({ className, label, ...props }) {
+  return (
   <div
     className={classNames(
-      'formField',
-      { 'formField--focused': false },
+      'campoForm',
+      { 'campoForm--focused': false },
       className
     )}
   >
-    <label className="formField-label">
+    <label className="campoForm-label">
       <span>{label}</span>
-      <input className="formField-input" autoComplete="off" {...props}></input>-
+      <input className="campoForm-input" autoComplete="off" {...props}></input>-
     </label>
-  </div>;
+  </div>
+  )
 }
 export default CamposForm;

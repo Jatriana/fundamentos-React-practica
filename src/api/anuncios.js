@@ -3,7 +3,9 @@ import cliente from './cliente';
 
 const anunciosBaseUrl = '/api';
 
+
 export const obtenerUltimosAnuncios = () => {
-  const url = `${anunciosBaseUrl}/anuncios`;
+  const url = `${anunciosBaseUrl}/v1/adverts`;
   return cliente.get(url);
 };
+

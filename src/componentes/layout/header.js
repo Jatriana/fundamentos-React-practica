@@ -2,15 +2,24 @@ import React from 'react';
 import classNames from 'classnames';
 
 // import { ReactComponent as Icon } from '../../assets/anuncio.svg';
-import './header.css';
 import Button from '../compartidos/button';
+import {cerrarSecion} from './../../api/autenticacion'
+import Type from 'prop-types'
+import './header.css';
 
-const Header = ({ className, isLogged, ...props }) => {
+const Header = ({ className, estaRegistrado,cerrar, ...props }) => {
+
+  const handleCerrar=()=>{
+    cerrar()
+    cerrarSecion()
+
+
+  }
   return (
     <header className={classNames('header', className)} {...props}>
       {/* <Link to="/"> */}
       <div className="header-logo">
-        {/* <Icon width="32" height="32" /> */}
+        {/* <Icon width="32" height="32" /> */} NODEPOP
       </div>
       {/* </Link> */}
       <nav className="header-nav">
@@ -20,14 +29,14 @@ const Header = ({ className, isLogged, ...props }) => {
           variant="primary"
           className="header-button"
         >
-          Anuncio
+          CrearAnuncio
         </Button>
-        {isLogged ? (
+        {estaRegistrado ? (
           <Button
             className="header-button"
-            // onClick={() => logout().then(onLogout)}
+             onClick={handleCerrar}
           >
-            Log out
+            cerrar
           </Button>
         ) : (
           <Button
@@ -42,5 +51,11 @@ const Header = ({ className, isLogged, ...props }) => {
     </header>
   );
 };
+
+
+Header.prototype={
+  estaRegistrado:Type.bool,
+  cerrar: Type.func.isRequired
+}
 
 export default Header;

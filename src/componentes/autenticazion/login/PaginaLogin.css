@@ -23,4 +23,13 @@
     margin-top: 20px;
     padding: 10px 15px;
   }
+
+  .paginaLogin-cargando {
+    background-color: rgba(224, 205, 36, 0.1);
+    border: 1px solid rgba(224, 205, 36, 0.2);
+    border-radius: 5px;
+    color: rgb(17, 16, 12);
+    margin-top: 20px;
+    padding: 10px 15px;
+  }
   

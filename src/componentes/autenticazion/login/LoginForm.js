@@ -1,11 +1,13 @@
 import React from 'react';
 
 import Button from '../../compartidos/button';
-import CamposForm from '../../compartidos/CamposForm';
+import CamposForm from '../../compartidos/CamposForm.js';
+import {recuerdame}from '../../../api/autenticacion'
+import Type from 'prop-types'
 
 import './LoginForm.css';
 /**implemento hooks para las input */
-function LoginForm({ onSubmit }) {
+function LoginForm({ onSubmit, estoyCargando, }) {
   const [credenciales, setCredenciales] = React.useState({
     email: '',
     password: '',
@@ -28,14 +30,14 @@ function LoginForm({ onSubmit }) {
 
   const { email, password } = credenciales;
   /**componente de checkbox de recordar contraseña */
-  const Checkbox = ({ fnChange, title = '', checked = false }) => (
+  const Checkbox = ({ fnChange, title = '', checked =false}) => (
     <label>
       <input
         onChange={(event) => {
           if (fnChange !== undefined) fnChange(event.target.checked);
         }}
         type="checkbox"
-        checked={checked}
+        checked ={checked}
       />
       {title}
     </label>
@@ -49,9 +51,12 @@ function LoginForm({ onSubmit }) {
   const [state, setState] = React.useReducer(reducer, initialState);
   const click = (event) => setState({ change: event });
   // const clearFilter = () => setState(initialState);
-
+ 
+  if(!state.change){
+    recuerdame()
+  }
   return (
-    <form className="paginalogin" onSubmit={handleSubmit}>
+    <form className="paginalogin" onSubmit={handleSubmit}checked={state.change} >
       <CamposForm
         type="text"
         name="email"
@@ -68,13 +73,13 @@ function LoginForm({ onSubmit }) {
         value={password}
         onChange={handleChange}
       ></CamposForm>
-      <Checkbox title="recuerdame" fnChange={click} checked={state.change} />
+      <Checkbox title="recuerdame" fnChange={click}  checked={state.change}/>
 
       <Button
         type="submit"
         className="loginForm-submit"
         variant="primary"
-        disabled={!email || !password}
+        disabled={estoyCargando ||!email || !password}
       >
         Acceder
       </Button>
@@ -82,4 +87,8 @@ function LoginForm({ onSubmit }) {
   );
 }
 
+LoginForm.Type={
+  onSubmit:Type.func.isRequired,
+  estoyCargando:Type.bool.isRequired
+}
 export default LoginForm;

@@ -1,25 +1,23 @@
 import cliente, { configCliente, resetCliente } from './cliente';
-
+import storage from '../componentes/autenticazion/storage';
 
 export const login = (credenciales) => {
   return cliente
     .post('Api/auth/login', credenciales)
     .then(({ accessToken }) => {
       configCliente({ accessToken });
-      localStorage.setItem('autorizado', accessToken);
-    
+      storage.set('token', accessToken);
     });
 };
 
-export const recuerdame=()=>{
-  resetCliente()
-  localStorage.removeItem('autorizado');
-}
-
+export const recuerdame = () => {
+  resetCliente();
+  storage.remove('token');
+};
 
 export const cerrarSecion = () => {
   return Promise.resolve().then(() => {
     resetCliente();
-    localStorage.removeItem('autorizado');
+    storage.remove('token');
   });
 };

@@ -26,13 +26,13 @@ const Header = ({ className, estaRegistrado,cerrar, ...props }) => {
       <nav className="header-nav">
         <Button
             as={Link}
-          to="/new"
+          to="/anuncio/new"
           variant="primary"
           className="header-button"
         >
           CrearAnuncio
         </Button>
-        {estaRegistrado ? (
+        { estaRegistrado ? (
           <Button
             className="header-button"
              onClick={handleCerrar}
@@ -41,7 +41,7 @@ const Header = ({ className, estaRegistrado,cerrar, ...props }) => {
           </Button>
         ) : (
           <Button
-            // as={Link}
+            as={Link}
             to="/login"
             className="header-button"
           >

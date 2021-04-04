@@ -8,24 +8,34 @@ import {
   PaginaNuevoAnuncio,
 } from './componentes/anuncios/index';
 
-function App() {
+function App({ seRegistraInicialmente }) {
   const accessToken = localStorage.getItem('autorizado');
   console.log(accessToken);
   configCliente({ accessToken });
 
   /**estado logeado */
-  const [estaRegistrado, setEstaRegistrado] = React.useState(!!accessToken);
+
+  const [estaRegistrado, setEstaRegistrado] = React.useState(
+    seRegistraInicialmente
+  );
 
   const handleLogin = () => setEstaRegistrado(true);
   const handleLogout = () => setEstaRegistrado(false);
-  
+
   return (
     <div className="App">
-      <Switch>
-        {/* <Route exact path="/anuncio/new" component={PaginaNuevoAnuncio}></Route>
-        <Route path="/anuncio/:id" component={PaginaDetalleAnuncio}></Route> */}
-        <Route path="/anucios" component={PaginaAnuncios}></Route>
-        <Route path="/login" component={PaginaLogin}></Route>
+      {/* <Switch>
+        <Route exact path="/anuncio/new" component={PaginaNuevoAnuncio}></Route>
+        <Route path="/anuncio/:id" component={PaginaDetalleAnuncio}></Route>
+        <Route path="/login">
+          {({history}) => <PaginaLogin estoyLogeado={handleLogin}history={history}></PaginaLogin>}
+        </Route>
+        <Route path="/">
+          <PaginaAnuncios
+            estaRegistrado={estaRegistrado}
+            cerrar={handleLogout}
+          />
+        </Route>
         <Route path="/404">
           <div
             style={{
@@ -38,19 +48,22 @@ function App() {
           </div>
         </Route>
 
-        {/* <Route>
+        <Route>
           <Redirect to="/" as="/anuncios"></Redirect>
         </Route>
         <Route>
           <Redirect to="/404"></Redirect>
-        </Route> */}
-      </Switch>
+        </Route>
+      </Switch> */}
 
-      {/* {estaRegistrado ? (
-        <PaginaAnuncios estaRegistrado={estaRegistrado} cerrar={handleLogout}></PaginaAnuncios>
+      {estaRegistrado ? (
+        <PaginaAnuncios
+          estaRegistrado={estaRegistrado}
+          cerrar={handleLogout}
+        ></PaginaAnuncios>
       ) : (
-        <PaginaLogin estoyLogeado={handleLogin} ></PaginaLogin>
-      )} */}
+        <PaginaLogin estoyLogeado={handleLogin}></PaginaLogin>
+      )}
       {/* <PaginaAnuncios></PaginaAnuncios>
       <PaginaDetalleAnuncio></PaginaDetalleAnuncio>
       <PaginaNuevoAnuncio></PaginaNuevoAnuncio>

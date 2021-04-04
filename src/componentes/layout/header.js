@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import {Link} from 'react-router-dom'
 
 // import { ReactComponent as Icon } from '../../assets/anuncio.svg';
 import Button from '../compartidos/button';
@@ -17,15 +18,15 @@ const Header = ({ className, estaRegistrado,cerrar, ...props }) => {
   }
   return (
     <header className={classNames('header', className)} {...props}>
-      {/* <Link to="/"> */}
+      <Link to="/">
       <div className="header-logo">
         {/* <Icon width="32" height="32" /> */} NODEPOP
       </div>
-      {/* </Link> */}
+      </Link>
       <nav className="header-nav">
         <Button
-          //   as={Link}
-          to="/tweet"
+            as={Link}
+          to="/new"
           variant="primary"
           className="header-button"
         >

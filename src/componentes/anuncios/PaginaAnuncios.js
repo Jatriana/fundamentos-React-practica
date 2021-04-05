@@ -9,27 +9,26 @@ import './PaginaAnuncios.css';
 const ListaVacia = () => (
   <div style={{ textAlign: 'center' }}>
     <p>Escribe tu primer Anuncio!</p>
-    <Button as={Link} to="/anuncio/new" variant="primary">Anuncio</Button>
+    <Button as={Link} to="/anuncio/new" variant="primary">
+      Anuncio
+    </Button>
   </div>
 );
 
-const PaginaAnuncios = ({ ...props }) => {
+const PaginaAnuncios = ({ history, ...props }) => {
   /**se levanta un estado y luego renderizamos */
   const [anuncios, setAnuncios] = React.useState([]);
- 
+console.log(anuncios)
   /**usamos el useEfecct para hacer las logicas que no tiene tiene nada que ver con el render y controlamos las llamadas de los anuncios*/
-  
 
-  
   React.useEffect(() => {
-    obtenerUltimosAnuncios()
-      .then(setAnuncios)
+    obtenerUltimosAnuncios().then(setAnuncios);
   }, []);
 
-  const handleClick = () => {
-    alert('Construyendo un enlace al detalle...');
+  const handleClick = (anuncioId) => {
+    history.push(`/anuncio/${anuncioId}`);
   };
-  console.log(anuncios);
+
   const items = anuncios.map((anuncio) => (
     <article className="tweet bordered" key={anuncio.id}>
       <div className="letf">
@@ -58,7 +57,11 @@ const PaginaAnuncios = ({ ...props }) => {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <Button onClick={handleClick} variant="primary">
+          <Button
+            onClick={() => handleClick(anuncio.id)}
+            history={history}
+            variant="primary"
+          >
             Detalles
           </Button>
         </div>
@@ -69,9 +72,6 @@ const PaginaAnuncios = ({ ...props }) => {
     <Layout title="Listados de Anuncios" {...props}>
       <div className="paginaAnuncios">
         {anuncios.length ? <div>{items}</div> : <ListaVacia></ListaVacia>}
-        
-        
-       
       </div>
     </Layout>
   );

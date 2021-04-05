@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { PaginaLogin } from './componentes/autenticazion/login/';
-import { configCliente } from './api/cliente';
+
 import {
   PaginaAnuncios,
   PaginaDetalleAnuncio,
@@ -9,10 +9,6 @@ import {
 } from './componentes/anuncios/index';
 
 function App({ seRegistraInicialmente }) {
-  const accessToken = localStorage.getItem('autorizado');
-  console.log(accessToken);
-  configCliente({ accessToken });
-
   /**estado logeado */
 
   const [estaRegistrado, setEstaRegistrado] = React.useState(
@@ -24,18 +20,45 @@ function App({ seRegistraInicialmente }) {
 
   return (
     <div className="App">
-      {/* <Switch>
-        <Route exact path="/anuncio/new" component={PaginaNuevoAnuncio}></Route>
-        <Route path="/anuncio/:id" component={PaginaDetalleAnuncio}></Route>
-        <Route path="/login">
-          {({history}) => <PaginaLogin estoyLogeado={handleLogin}history={history}></PaginaLogin>}
-        </Route>
-        <Route path="/">
-          <PaginaAnuncios
+      <Switch>
+        <Route exact path="/anuncio/new">
+          <PaginaNuevoAnuncio
             estaRegistrado={estaRegistrado}
             cerrar={handleLogout}
-          />
+          ></PaginaNuevoAnuncio>
         </Route>
+
+        <Route path="/anuncio/:id">
+          {({ match }) => (
+            <PaginaDetalleAnuncio
+              estaRegistrado={estaRegistrado}
+              cerrar={handleLogout}
+              match={match}
+            ></PaginaDetalleAnuncio>
+          )}
+        </Route>
+        <Route path="/login">
+          {({ history }) => (
+            <PaginaLogin
+              estoyLogeado={handleLogin}
+              history={history}
+            ></PaginaLogin>
+          )}
+        </Route>
+
+        <Route exact path="/">
+          {({ history }) => (
+            <PaginaAnuncios
+              estaRegistrado={estaRegistrado}
+              cerrar={handleLogout}
+              history={history}
+            />
+          )}
+        </Route>
+        <Route>
+          <Redirect to="/" as="/anuncios"></Redirect>
+        </Route>
+
         <Route path="/404">
           <div
             style={{
@@ -48,25 +71,22 @@ function App({ seRegistraInicialmente }) {
           </div>
         </Route>
 
-        <Route>
-          <Redirect to="/" as="/anuncios"></Redirect>
-        </Route>
-        <Route>
-          <Redirect to="/404"></Redirect>
-        </Route>
-      </Switch> */}
+        {/* <Route>
+          <Redirect to="./404"></Redirect>
+        </Route> */}
+      </Switch>
 
-      {estaRegistrado ? (
+      {/* {estaRegistrado ? (
         <PaginaAnuncios
           estaRegistrado={estaRegistrado}
           cerrar={handleLogout}
         ></PaginaAnuncios>
       ) : (
         <PaginaLogin estoyLogeado={handleLogin}></PaginaLogin>
-      )}
+      )} */}
       {/* <PaginaAnuncios></PaginaAnuncios>
-      <PaginaDetalleAnuncio></PaginaDetalleAnuncio>
-      <PaginaNuevoAnuncio></PaginaNuevoAnuncio>
+      
+      
        */}
     </div>
   );

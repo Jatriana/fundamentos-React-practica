@@ -20,7 +20,7 @@ const Header = ({ className, estaRegistrado,cerrar, ...props }) => {
     <header className={classNames('header', className)} {...props}>
       <Link to="/">
       <div className="header-logo">
-        {/* <Icon width="32" height="32" /> */} NODEPOP
+        NODEPOP
       </div>
       </Link>
       <nav className="header-nav">

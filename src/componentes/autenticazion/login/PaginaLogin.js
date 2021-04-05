@@ -8,15 +8,15 @@ function PaginaLogin({ estoyLogeado, history }) {
   /**estado de error en la llamada */
   const [error, setError] = React.useState(null);
   const [estoyCargando, setEstoyCargando] = React.useState(false);
-  const logeado = React.useRef(false);
+  const estaRegistrado = React.useRef(false);
 
   const resetError = () => setError(null);
   React.useEffect(() => {
-    if (logeado.current) {
+    if (estaRegistrado.current) {
       estoyLogeado();
-      // history.push('/')
+      history.push('/')
     }
-  }, [logeado.current, estoyLogeado]);
+  }, );
 
   const handleSubmit = async (credenciales) => {
     resetError();
@@ -24,7 +24,7 @@ function PaginaLogin({ estoyLogeado, history }) {
     try {
       await login(credenciales);
       estoyLogeado();
-      logeado.current = true;
+      estaRegistrado.current = true;
     } catch (error) {
       setError(error);
     } finally {

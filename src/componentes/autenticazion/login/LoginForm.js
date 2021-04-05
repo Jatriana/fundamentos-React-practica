@@ -52,7 +52,7 @@ function LoginForm({ onSubmit, estoyCargando, }) {
   const click = (event) => setState({ change: event });
   // const clearFilter = () => setState(initialState);
  
-  if(!state.change){
+  if(state.change){
     recuerdame()
   }
   return (

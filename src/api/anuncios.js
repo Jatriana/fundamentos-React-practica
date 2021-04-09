@@ -14,10 +14,10 @@ export const obtenerDetalleAnuncio = (anuncioId) => {
   return cliente.get(url);
 };
 
-Export const crearAnuncio = (anuncioId) => {
+export const crearAnuncio = (contenido) => {
   const url = `${anunciosBaseUrl}/v1/adverts/`;
 
-  return cliente.post(url);
+  return cliente.post(url,contenido);
 };
 export const borrarAnuncio = (anuncioId) => {
   console.log('estoy en la funcion borrar', anuncioId);

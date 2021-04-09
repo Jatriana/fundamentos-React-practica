@@ -29,11 +29,12 @@ function App({ seRegistraInicialmente }) {
         </Route>
 
         <Route path="/anuncio/:id">
-          {({ match }) => (
+          {({ match, history }) => (
             <PaginaDetalleAnuncio
               estaRegistrado={estaRegistrado}
               cerrar={handleLogout}
               match={match}
+              history={history}
             ></PaginaDetalleAnuncio>
           )}
         </Route>

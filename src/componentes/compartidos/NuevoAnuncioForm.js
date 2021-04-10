@@ -18,7 +18,7 @@ function NuevoAnuncioForm({
   });
 
   const cargarFichero = (event) => {
-    setContenido({ ...contenido, photo: event.target.files[0].name });
+    setContenido({ ...contenido, photo: event.target.files[0] });
   };
 
   const handleChange = (event) => {
@@ -31,11 +31,17 @@ function NuevoAnuncioForm({
       return newContenido;
     });
   };
+  let formData = new FormData();
+  for (var key in contenido) {
+    formData.append(key, contenido[key]);
+  }
+
+  console.log(formData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    onSubmit(contenido);
+    onSubmit(formData);
   };
 
   const { name, price, sale, tags } = contenido;
@@ -117,7 +123,7 @@ function NuevoAnuncioForm({
 
 NuevoAnuncioForm.Type = {
   onSubmit: Type.func.isRequired,
-  contenido: Type.object.isRequired,
+  // contenido: Type.object.isRequired,
   anuncioCreado: Type.bool,
 };
 

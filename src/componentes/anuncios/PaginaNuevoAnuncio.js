@@ -24,10 +24,12 @@ const PaginaNuevoAnuncio = ({ estaRegistrado, history, ...props }) => {
       setAnuncioCreado(true);
     } catch (error) {
       setError(error);
+      setEnviandoDatos(false);
     } finally {
       setAnuncioCreado(false);
     }
-  };
+  }
+
 
   return (
     <Layout title="Nuevo Anuncio" estaRegistrado={estaRegistrado} {...props}>
@@ -40,6 +42,8 @@ const PaginaNuevoAnuncio = ({ estaRegistrado, history, ...props }) => {
           enviandoDatos={enviandoDatos}
           {...props}
         ></NuevoAnuncioForm>
+
+
         {error && (
           <div onClick={resetError} className="paginaLogin-error">
             [X] {error.message}

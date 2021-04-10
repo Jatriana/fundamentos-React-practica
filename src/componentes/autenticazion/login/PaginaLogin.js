@@ -6,7 +6,6 @@ import { login } from '../../../api/autenticacion.js';
 import '../login/PaginaLogin.css';
 
 function PaginaLogin({ estoyLogeado, history }) {
-  /**estado de error en la llamada */
   const [error, setError] = React.useState(null);
   const [estoyCargando, setEstoyCargando] = React.useState(false);
   const estaRegistrado = React.useRef(false);
@@ -48,6 +47,5 @@ function PaginaLogin({ estoyLogeado, history }) {
     </div>
   );
 }
-
 
 export default PaginaLogin;

@@ -9,8 +9,6 @@ import {
 } from './componentes/anuncios/index';
 
 function App({ seRegistraInicialmente }) {
-  /**estado logeado */
-
   const [estaRegistrado, setEstaRegistrado] = React.useState(
     seRegistraInicialmente
   );
@@ -22,12 +20,13 @@ function App({ seRegistraInicialmente }) {
     <div className="App">
       <Switch>
         <Route exact path="/anuncio/new">
-          {({history})=>(<PaginaNuevoAnuncio
-            estaRegistrado={estaRegistrado}
-            cerrar={handleLogout}
-            history={history}
-          ></PaginaNuevoAnuncio>)}
-          
+          {({ history }) => (
+            <PaginaNuevoAnuncio
+              estaRegistrado={estaRegistrado}
+              cerrar={handleLogout}
+              history={history}
+            ></PaginaNuevoAnuncio>
+          )}
         </Route>
 
         <Route path="/anuncio/:id">

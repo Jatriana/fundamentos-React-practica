@@ -4,14 +4,17 @@ import Button from './button';
 import CamposForm from './CamposForm';
 import '../autenticazion/login/LoginForm.css';
 
-function NuevoAnuncioForm  ({ onSubmit, anuncioCreado, enviandoDatos, ...props }){
-
+function NuevoAnuncioForm({
+  onSubmit,
+  anuncioCreado,
+  enviandoDatos,
+  ...props
+}) {
   const [contenido, setContenido] = React.useState({
     name: '',
     price: '',
     sale: false,
     tags: [],
-    
   });
 
   const cargarFichero = (event) => {
@@ -28,7 +31,7 @@ function NuevoAnuncioForm  ({ onSubmit, anuncioCreado, enviandoDatos, ...props }
       return newContenido;
     });
   };
-  console.log(contenido);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -104,18 +107,18 @@ function NuevoAnuncioForm  ({ onSubmit, anuncioCreado, enviandoDatos, ...props }
         type="submit"
         className="loginForm-submit"
         variant="primary"
-        disabled={enviandoDatos ||!name || !price || !sale || !tags}
+        disabled={enviandoDatos || !name || !price || !sale || !tags}
       >
         submit
       </Button>
     </form>
   );
-};
-
-NuevoAnuncioForm.Type={
-  onSubmit:Type.func.isRequired,
-  contenido:Type.object.isRequired,
-  anuncioCreado:Type.bool,
 }
+
+NuevoAnuncioForm.Type = {
+  onSubmit: Type.func.isRequired,
+  contenido: Type.object.isRequired,
+  anuncioCreado: Type.bool,
+};
 
 export default NuevoAnuncioForm;

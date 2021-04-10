@@ -18,16 +18,15 @@ export const crearAnuncio = (contenido) => {
   const url = `${anunciosBaseUrl}/v1/adverts/`;
   let formData = new FormData();
 
-  formData.append("file", contenido);
-  console.log()
-  return cliente.post(url,contenido,formData, {
+  formData.append('file', contenido);
+
+  return cliente.post(url, contenido, formData, {
     headers: {
-      "Content-Type": "multipart/form-data"}});
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 };
 export const borrarAnuncio = (anuncioId) => {
-  console.log('estoy en la funcion borrar', anuncioId);
   const url = `${anunciosBaseUrl}/v1/adverts/${anuncioId}`;
   return cliente.delete(url);
 };
-
-

@@ -6,20 +6,25 @@ import Button from '../compartidos/button';
 import Type from 'prop-types';
 import './PaginaAnuncios.css';
 
-const ListaVacia = () => (
+const ListaVacia = ({ estaRegistrado }) => (
   <div style={{ textAlign: 'center' }}>
     <p>Escribe tu primer Anuncio!</p>
-    <Button as={Link} to="/anuncio/new" variant="primary">
-      Anuncio
-    </Button>
+    <div></div>
+    {estaRegistrado ? (
+      <Button as={Link} to="/anuncio/new" variant="primary">
+        Anuncio
+      </Button>
+    ) : (
+      <Button as={Link} to="/login" variant="primary">
+        Login
+      </Button>
+    )}
   </div>
 );
 
-const PaginaAnuncios = ({ history, ...props }) => {
-  /**se levanta un estado y luego renderizamos */
+const PaginaAnuncios = ({ estaRegistrado, history, ...props }) => {
   const [anuncios, setAnuncios] = React.useState([]);
-console.log(anuncios)
-  /**usamos el useEfecct para hacer las logicas que no tiene tiene nada que ver con el render y controlamos las llamadas de los anuncios*/
+  
 
   React.useEffect(() => {
     obtenerUltimosAnuncios().then(setAnuncios);
@@ -69,9 +74,13 @@ console.log(anuncios)
     </article>
   ));
   return (
-    <Layout title="Listados de Anuncios" {...props}>
+    <Layout title="Listados de Anuncios" estaRegistrado={estaRegistrado}{...props}>
       <div className="paginaAnuncios">
-        {anuncios.length ? <div>{items}</div> : <ListaVacia></ListaVacia>}
+        {anuncios.length ? (
+          <div>{items}</div>
+        ) : (
+          <ListaVacia {...props}></ListaVacia>
+        )}
       </div>
     </Layout>
   );

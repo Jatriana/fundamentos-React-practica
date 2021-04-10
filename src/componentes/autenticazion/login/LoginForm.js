@@ -6,7 +6,6 @@ import { noRecordarme } from '.././././../../api/autenticacion';
 import Type from 'prop-types';
 
 import './LoginForm.css';
-/**implemento hooks para las input */
 function LoginForm({ onSubmit, estoyCargando }) {
   const [recuerdame, setRecuerdame] = React.useState({ estado: false });
   const [credenciales, setCredenciales] = React.useState({
@@ -33,13 +32,12 @@ function LoginForm({ onSubmit, estoyCargando }) {
       return newRecuerdame;
     });
   };
-  console.log(recuerdame);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmit(credenciales);
   };
-  console.log(recuerdame.estado);
+
   if (!recuerdame.estado) {
     noRecordarme();
   }

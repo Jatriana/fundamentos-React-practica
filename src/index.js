@@ -7,7 +7,7 @@ import storage from './componentes/autenticazion/storage';
 import { configCliente } from './api/cliente';
 
 const accessToken = storage.get('token');
-console.log(accessToken);
+
 configCliente({ accessToken });
 
 ReactDOM.render(

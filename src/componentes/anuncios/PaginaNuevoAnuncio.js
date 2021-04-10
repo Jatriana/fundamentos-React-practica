@@ -3,7 +3,6 @@ import Layout from '../layout/layout';
 import NuevoAnuncioForm from '../compartidos/NuevoAnuncioForm';
 import { crearAnuncio } from '../../api/anuncios';
 
-
 const PaginaNuevoAnuncio = ({ estaRegistrado, history, ...props }) => {
   const [error, setError] = React.useState(null);
   const [enviandoDatos, setEnviandoDatos] = React.useState(false);
@@ -13,7 +12,7 @@ const PaginaNuevoAnuncio = ({ estaRegistrado, history, ...props }) => {
   const resetEnviandoDatos = () => setEnviandoDatos(null);
   React.useEffect(() => {
     if (anuncioCreado) {
-      history.push('/')
+      history.push('/');
     }
   });
 
@@ -31,7 +30,7 @@ const PaginaNuevoAnuncio = ({ estaRegistrado, history, ...props }) => {
   };
 
   return (
-    <Layout title="Nuevo Anuncio"estaRegistrado={estaRegistrado} {...props}>
+    <Layout title="Nuevo Anuncio" estaRegistrado={estaRegistrado} {...props}>
       <div>PaginaNuevoAnuncio</div>
 
       <div>
@@ -46,7 +45,7 @@ const PaginaNuevoAnuncio = ({ estaRegistrado, history, ...props }) => {
             [X] {error.message}
           </div>
         )}
-        {enviandoDatos &&  (
+        {enviandoDatos && (
           <div onClick={resetEnviandoDatos} className="paginaLogin-cargando">
             [X] Cargando datos
           </div>

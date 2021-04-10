@@ -1,50 +1,42 @@
 import React from 'react';
 import classNames from 'classnames';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 // import { ReactComponent as Icon } from '../../assets/anuncio.svg';
 import Button from '../compartidos/button';
-import {cerrarSecion} from './../../api/autenticacion'
-import Type from 'prop-types'
+import { cerrarSecion } from './../../api/autenticacion';
+import Type from 'prop-types';
 import './header.css';
 
-const Header = ({ className, estaRegistrado,cerrar, ...props }) => {
-
-  const handleCerrar=()=>{
-    cerrar()
-    cerrarSecion()
-
-
-  }
+const Header = ({ className, estaRegistrado, cerrar, ...props }) => {
+  const handleCerrar = () => {
+    cerrarSecion().then(cerrar);
+  };
   return (
     <header className={classNames('header', className)} {...props}>
       <Link to="/">
-      <div className="header-logo">
-        NODEPOP
-      </div>
+        <div className="header-logo">NODEPOP</div>
       </Link>
       <nav className="header-nav">
         <Button
-            as={Link}
+          as={Link}
           to="/anuncio/new"
           variant="primary"
           className="header-button"
         >
           CrearAnuncio
         </Button>
-        { estaRegistrado ? (
-          <Button
-            className="header-button"
-             onClick={handleCerrar}
-          >
-            cerrar
-          </Button>
-        ) : (
+        {estaRegistrado ? (
           <Button
             as={Link}
             to="/login"
             className="header-button"
+            onClick={handleCerrar}
           >
+            cerrar
+          </Button>
+        ) : (
+          <Button as={Link} to="/login" className="header-button">
             Login
           </Button>
         )}
@@ -53,10 +45,9 @@ const Header = ({ className, estaRegistrado,cerrar, ...props }) => {
   );
 };
 
-
-Header.prototype={
-  estaRegistrado:Type.bool,
-  cerrar: Type.func.isRequired
-}
+Header.prototype = {
+  estaRegistrado: Type.bool,
+  cerrar: Type.func.isRequired,
+};
 
 export default Header;

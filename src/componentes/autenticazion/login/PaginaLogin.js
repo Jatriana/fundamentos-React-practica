@@ -1,4 +1,5 @@
 import React from 'react';
+import T from 'prop-types';
 import LoginForm from './LoginForm.js';
 import { login } from '../../../api/autenticacion.js';
 
@@ -14,9 +15,9 @@ function PaginaLogin({ estoyLogeado, history }) {
   React.useEffect(() => {
     if (estaRegistrado.current) {
       estoyLogeado();
-      history.push('/')
+      history.push('/');
     }
-  }, );
+  });
 
   const handleSubmit = async (credenciales) => {
     resetError();
@@ -47,5 +48,6 @@ function PaginaLogin({ estoyLogeado, history }) {
     </div>
   );
 }
+
 
 export default PaginaLogin;

@@ -7,17 +7,21 @@ export const login = (credenciales) => {
     .then(({ accessToken }) => {
       configCliente({ accessToken });
       storage.set('token', accessToken);
+      if (accessToken) {
+        storage.set('credenciales', credenciales);
+      }
     });
 };
 
-export const recuerdame = () => {
-  resetCliente();
-  storage.remove('token');
+export const noRecordarme = () => {
+  storage.remove('credenciales');
 };
 
 export const cerrarSecion = () => {
   return Promise.resolve().then(() => {
     resetCliente();
     storage.remove('token');
+    storage.remove('token');
+    storage.remove('credenciales');
   });
 };

@@ -22,10 +22,12 @@ function App({ seRegistraInicialmente }) {
     <div className="App">
       <Switch>
         <Route exact path="/anuncio/new">
-          <PaginaNuevoAnuncio
+          {({history})=>(<PaginaNuevoAnuncio
             estaRegistrado={estaRegistrado}
             cerrar={handleLogout}
-          ></PaginaNuevoAnuncio>
+            history={history}
+          ></PaginaNuevoAnuncio>)}
+          
         </Route>
 
         <Route path="/anuncio/:id">

@@ -2,12 +2,13 @@ import React from 'react';
 
 import Button from '../../compartidos/button';
 import CamposForm from '../../compartidos/CamposForm.js';
-import {recuerdame}from '../../../api/autenticacion'
-import Type from 'prop-types'
+import { noRecordarme } from '.././././../../api/autenticacion';
+import Type from 'prop-types';
 
 import './LoginForm.css';
 /**implemento hooks para las input */
-function LoginForm({ onSubmit, estoyCargando, }) {
+function LoginForm({ onSubmit, estoyCargando }) {
+  const [recuerdame, setRecuerdame] = React.useState({ estado: false });
   const [credenciales, setCredenciales] = React.useState({
     email: '',
     password: '',
@@ -23,40 +24,29 @@ function LoginForm({ onSubmit, estoyCargando, }) {
     });
   };
 
+  const handleChangeCeckbox = (event) => {
+    setRecuerdame((recuerdame) => {
+      const newRecuerdame = {
+        ...recuerdame,
+        estado: event.target.checked,
+      };
+      return newRecuerdame;
+    });
+  };
+  console.log(recuerdame);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmit(credenciales);
   };
-
-  const { email, password } = credenciales;
-  /**componente de checkbox de recordar contraseña */
-  const Checkbox = ({ fnChange, title = '', checked =false}) => (
-    <label>
-      <input
-        onChange={(event) => {
-          if (fnChange !== undefined) fnChange(event.target.checked);
-        }}
-        type="checkbox"
-        checked ={checked}
-      />
-      {title}
-    </label>
-  );
-
-  const initialState = {
-    change: false,
-  };
-
-  const reducer = (state, action) => ({ ...state, ...action });
-  const [state, setState] = React.useReducer(reducer, initialState);
-  const click = (event) => setState({ change: event });
-  // const clearFilter = () => setState(initialState);
- 
-  if(state.change){
-    recuerdame()
+  console.log(recuerdame.estado);
+  if (!recuerdame.estado) {
+    noRecordarme();
   }
+  const { email, password } = credenciales;
+
   return (
-    <form className="paginalogin" onSubmit={handleSubmit}checked={state.change} >
+    <form className="paginalogin" onSubmit={handleSubmit}>
       <CamposForm
         type="text"
         name="email"
@@ -73,13 +63,17 @@ function LoginForm({ onSubmit, estoyCargando, }) {
         value={password}
         onChange={handleChange}
       ></CamposForm>
-      <Checkbox title="recuerdame" fnChange={click}  checked={state.change}/>
+
+      <div>
+        <input type="checkbox" onChange={handleChangeCeckbox}></input>
+        Recuerdame
+      </div>
 
       <Button
         type="submit"
         className="loginForm-submit"
         variant="primary"
-        disabled={estoyCargando ||!email || !password}
+        disabled={estoyCargando || !email || !password}
       >
         Acceder
       </Button>
@@ -87,8 +81,8 @@ function LoginForm({ onSubmit, estoyCargando, }) {
   );
 }
 
-LoginForm.Type={
-  onSubmit:Type.func.isRequired,
-  estoyCargando:Type.bool.isRequired
-}
+LoginForm.Type = {
+  onSubmit: Type.func.isRequired,
+  estoyCargando: Type.bool.isRequired,
+};
 export default LoginForm;

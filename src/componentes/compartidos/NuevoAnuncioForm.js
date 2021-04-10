@@ -1,52 +1,43 @@
-import { string } from 'prop-types';
+import Type from 'prop-types';
 import React from 'react';
 import Button from './button';
 import CamposForm from './CamposForm';
 import '../autenticazion/login/LoginForm.css';
 
-const NuevoAnuncioForm = (onSubmit, ...props) => {
+function NuevoAnuncioForm  ({ onSubmit, anuncioCreado, enviandoDatos, ...props }){
+
   const [contenido, setContenido] = React.useState({
     name: '',
     price: '',
     sale: false,
     tags: [],
+    
   });
-console.log(onSubmit)
-  //   const photoRef = React.useRef();
-  //   const [archivos, setArchivo] = useState();
-  //   const subirArchivo = (event) => {
-  //     setArchivo(event)
-  //   };
 
-  // const insertarArchivo = async () => {
-  //   const file = new FormData(contenido);
-  //   console.log(file);
-  // };
-  // insertarArchivo();
+  const cargarFichero = (event) => {
+    setContenido({ ...contenido, photo: event.target.files[0].name });
+  };
+
   const handleChange = (event) => {
     setContenido((oldContenido) => {
       const newContenido = {
         ...oldContenido,
         [event.target.name]: event.target.value,
       };
-      console.log(newContenido);
 
       return newContenido;
     });
   };
-
+  console.log(contenido);
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(onSubmit(contenido))
-    onSubmit(contenido);
-    console.log(contenido);
 
-    console.log(event);
+    onSubmit(contenido);
   };
 
   const { name, price, sale, tags } = contenido;
   return (
-    <form className="loginForm" onSubmit={handleSubmit}{...props}>
+    <form className="loginForm" onSubmit={handleSubmit} {...props}>
       <CamposForm
         type="text"
         name="name"
@@ -100,25 +91,31 @@ console.log(onSubmit)
         </select>
       </div>
 
-      {/* <div>
+      <div>
         <div>
           <span>
             Foto
-            <input type="file" onChange={(event)=>subirArchivo(event.target.file)} />
+            <input type="file" onChange={cargarFichero} />
           </span>
         </div>
-      </div> */}
+      </div>
 
       <Button
         type="submit"
         className="loginForm-submit"
         variant="primary"
-        disabled={!name || !price}
+        disabled={enviandoDatos ||!name || !price || !sale || !tags}
       >
         submit
       </Button>
     </form>
   );
 };
+
+NuevoAnuncioForm.Type={
+  onSubmit:Type.func.isRequired,
+  contenido:Type.object.isRequired,
+  anuncioCreado:Type.bool,
+}
 
 export default NuevoAnuncioForm;

@@ -32,11 +32,10 @@ function NuevoAnuncioForm({
     });
   };
   let formData = new FormData();
+
   for (var key in contenido) {
     formData.append(key, contenido[key]);
   }
-
-  console.log(formData);
 
   const handleSubmit = (event) => {
     event.preventDefault();

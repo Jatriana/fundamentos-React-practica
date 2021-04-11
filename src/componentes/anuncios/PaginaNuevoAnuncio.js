@@ -3,6 +3,7 @@ import Layout from '../layout/layout';
 import NuevoAnuncioForm from '../compartidos/NuevoAnuncioForm';
 import { crearAnuncio } from '../../api/anuncios';
 
+
 const PaginaNuevoAnuncio = ({ estaRegistrado, history, ...props }) => {
   const [error, setError] = React.useState(null);
   const [enviandoDatos, setEnviandoDatos] = React.useState(false);

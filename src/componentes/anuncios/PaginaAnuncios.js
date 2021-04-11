@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { obtenerUltimosAnuncios } from '../../api/anuncios';
 import Layout from '../layout/layout';
 import Button from '../compartidos/button';
+import FiltroAnuncioForm from '../util/FiltroAnunciosForm';
 import Type from 'prop-types';
 import './PaginaAnuncios.css';
 
@@ -24,7 +25,7 @@ const ListaVacia = ({ estaRegistrado }) => (
 
 const PaginaAnuncios = ({ estaRegistrado, history, ...props }) => {
   const [anuncios, setAnuncios] = React.useState([]);
-  
+  const [activarFiltro, setActivarFiltro] = React.useState(false);
 
   React.useEffect(() => {
     obtenerUltimosAnuncios().then(setAnuncios);
@@ -33,6 +34,8 @@ const PaginaAnuncios = ({ estaRegistrado, history, ...props }) => {
   const handleClick = (anuncioId) => {
     history.push(`/anuncio/${anuncioId}`);
   };
+  const handleSubmit = () => {};
+  console.log(activarFiltro);
 
   const items = anuncios.map((anuncio) => (
     <article className="tweet bordered" key={anuncio.id}>
@@ -74,7 +77,14 @@ const PaginaAnuncios = ({ estaRegistrado, history, ...props }) => {
     </article>
   ));
   return (
-    <Layout title="Listados de Anuncios" estaRegistrado={estaRegistrado}{...props}>
+    <Layout
+      title="Listados de Anuncios"
+      activarFiltro={activarFiltro}
+      setActivarFiltro={setActivarFiltro}
+      onSubmit={handleSubmit}
+      estaRegistrado={estaRegistrado}
+      {...props}
+    >
       <div className="paginaAnuncios">
         {anuncios.length ? (
           <div>{items}</div>

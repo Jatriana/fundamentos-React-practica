@@ -53,7 +53,11 @@ const PaginaDetalleAnuncio = ({ match, estaRegistrado, history, ...props }) => {
   };
 
   return (
-    <Layout title="Detalle del anuncio" estaRegistrado={estaRegistrado}{...props}>
+    <Layout
+      title="Detalle del anuncio"
+      estaRegistrado={estaRegistrado}
+      {...props}
+    >
       <div>PaginaDetalleAnuncio</div>
       <article className="tweet bordered" key={anuncio.id}>
         <div className="letf">

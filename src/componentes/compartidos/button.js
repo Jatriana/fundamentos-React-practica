@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const accentColor = 'rgb(29,  161, 242)';
+const accentColor = 'rgb(4, 97, 97)';
 
 const Button = styled.button`
   align-items: center;
@@ -17,7 +17,7 @@ const Button = styled.button`
   font-weight: bold;
   min-height: 36px;
   justify-content: center;
-  min-width: 72px;
+  min-width: 70px;
   outline-style: none;
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   padding: 0 30px;
@@ -28,8 +28,8 @@ const Button = styled.button`
   &:hover {
     background-color: ${(props) =>
       props.variant === 'primary'
-        ? 'rgb(26, 145, 218)'
-        : 'rgba(29, 161, 242, 0.1)'};
+        ? 'rgb(8, 179, 209)'
+        : 'rgba(8, 179, 209 0.1)'};
   }
 `;
 

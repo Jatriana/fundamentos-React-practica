@@ -7,13 +7,13 @@ function NuevoAnuncioForm({
   onSubmit,
   anuncioCreado,
   enviandoDatos,
-  
+
   ...props
 }) {
   const [contenidoFiltro, setContenidoFiltro] = React.useState({
     name: '',
     price: '',
-    sale: false,
+    sale: '',
     tags: [],
   });
 
@@ -27,15 +27,13 @@ function NuevoAnuncioForm({
       return newContenidoFiltro;
     });
   };
-  let formData = new FormData();
-  for (var key in contenidoFiltro) {
-    formData.append(key, contenidoFiltro[key]);
+  let url = '';
+  if (contenidoFiltro.sale !== null) {
+    url += `/sale=${contenidoFiltro.sale}`;
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    onSubmit(formData);
   };
 
   const { name, price, sale, tags } = contenidoFiltro;

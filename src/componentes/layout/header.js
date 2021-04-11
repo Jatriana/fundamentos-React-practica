@@ -36,12 +36,6 @@ const Header = ({
     });
   };
 
-  if (filtro.estado) {
-    setActivarFiltro(true);
-  } else {
-    setActivarFiltro(false);
-  }
-
   return (
     <header className={classNames('header', className)} {...props}>
       <Link to="/">

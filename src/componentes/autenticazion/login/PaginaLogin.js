@@ -34,7 +34,7 @@ function PaginaLogin({ estoyLogeado, history }) {
 
   return (
     <div className="paginaLogin">
-      <h1 className="paginaLogin-title">acceso a Nodeapi</h1>
+      <h1 className="paginaLogin-title">Acceso a Nodeapi</h1>
       <LoginForm onSubmit={handleSubmit} estoyCargando={estoyCargando} />
       {error && (
         <div onClick={resetError} className="paginaLogin-error">

@@ -35,7 +35,6 @@ const PaginaAnuncios = ({ estaRegistrado, history, ...props }) => {
     history.push(`/anuncio/${anuncioId}`);
   };
   const handleSubmit = () => {};
-  console.log(activarFiltro);
 
   const items = anuncios.map((anuncio) => (
     <article className="tweet bordered" key={anuncio.id}>
